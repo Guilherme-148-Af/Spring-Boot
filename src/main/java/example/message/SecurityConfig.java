@@ -1,4 +1,4 @@
-/* package example.cashcard;
+ package example.message;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,9 +19,7 @@ class SecurityConfig {
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(request -> request
-                        .requestMatchers("/cashcards/**")
-                        .hasRole("CARD-OWNER"))
-                .httpBasic(Customizer.withDefaults())
+                        .anyRequest().permitAll())
                 .csrf(csrf -> csrf.disable());
         return http.build();
     }
@@ -30,6 +28,7 @@ class SecurityConfig {
     PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
 
     @Bean
     UserDetailsService testOnlyUsers(PasswordEncoder passwordEncoder) {
@@ -51,6 +50,4 @@ class SecurityConfig {
                 .build();
         return new InMemoryUserDetailsManager(sarah, hankOwnsNoCards, kumar);
     }
-} */
-
-.requestMatchers("/messages/").authenticated()
+}
