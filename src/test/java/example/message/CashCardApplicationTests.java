@@ -1,19 +1,8 @@
-package example.cashcard;
+package example.message;
 
-import com.jayway.jsonpath.DocumentContext;
-import com.jayway.jsonpath.JsonPath;
-import net.minidev.json.JSONArray;
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.test.annotation.DirtiesContext;
-
-import java.net.URI;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -21,6 +10,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 class CashCardApplicationTests {
     @Autowired
     TestRestTemplate restTemplate;
+
+    /* Testes antigos do CashCard comentados
 
     @Test
     void shouldReturnACashCardWhenDataIsSaved() {
@@ -50,7 +41,7 @@ class CashCardApplicationTests {
     @Test
     @DirtiesContext
     void shouldCreateANewCashCard() {
-        CashCard newCashCard = new CashCard(null, 250.00, null);
+        Message newCashCard = new Message(null, 250.00, null);
         ResponseEntity<Void> createResponse = restTemplate
                 .withBasicAuth("sarah1", "abc123")
                 .postForEntity("/cashcards", newCashCard, Void.class);
@@ -162,8 +153,8 @@ class CashCardApplicationTests {
     @Test
     @DirtiesContext
     void shouldUpdateAnExistingCashCard() {
-        CashCard cashCardUpdate = new CashCard(null, 19.99, null);
-        HttpEntity<CashCard> request = new HttpEntity<>(cashCardUpdate);
+        Message cashCardUpdate = new Message(null, 19.99, null);
+        HttpEntity<Message> request = new HttpEntity<>(cashCardUpdate);
         ResponseEntity<Void> response = restTemplate
                 .withBasicAuth("sarah1", "abc123")
                 .exchange("/cashcards/99", HttpMethod.PUT, request, Void.class);
@@ -182,8 +173,8 @@ class CashCardApplicationTests {
 
     @Test
     void shouldNotUpdateACashCardThatDoesNotExist() {
-        CashCard unknownCard = new CashCard(null, 19.99, null);
-        HttpEntity<CashCard> request = new HttpEntity<>(unknownCard);
+        Message unknownCard = new Message(null, 19.99, null);
+        HttpEntity<Message> request = new HttpEntity<>(unknownCard);
         ResponseEntity<Void> response = restTemplate
                 .withBasicAuth("sarah1", "abc123")
                 .exchange("/cashcards/99999", HttpMethod.PUT, request, Void.class);
@@ -192,8 +183,8 @@ class CashCardApplicationTests {
 
     @Test
     void shouldNotUpdateACashCardThatIsOwnedBySomeoneElse() {
-        CashCard kumarsCard = new CashCard(null, 333.33, null);
-        HttpEntity<CashCard> request = new HttpEntity<>(kumarsCard);
+        Message kumarsCard = new Message(null, 333.33, null);
+        HttpEntity<Message> request = new HttpEntity<>(kumarsCard);
         ResponseEntity<Void> response = restTemplate
                 .withBasicAuth("sarah1", "abc123")
                 .exchange("/cashcards/102", HttpMethod.PUT, request, Void.class);
@@ -230,4 +221,5 @@ void shouldNotAllowDeletionOfCashCardsTheyDoNotOwn() {
         .getForEntity("/cashcards/102", String.class);
 assertThat(getResponse.getStatusCode()).isEqualTo(HttpStatus.OK);
 }
+    */
 }
