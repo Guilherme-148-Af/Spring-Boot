@@ -1,4 +1,4 @@
-package example.cashcard;
+/* package example.cashcard;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -13,4 +13,17 @@ interface CashCardRepository extends CrudRepository<CashCard, Long>, PagingAndSo
 
 	Page<CashCard> findByOwner(String name, PageRequest of);
     
+} */
+
+package example.cashcard;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.PagingAndSortingRepository;
+
+interface MessageRepository extends PagingAndSortingRepository<Message, Long> {
+
+    Page<Message> findByToUserOrderByCreatedAtDesc(String toUser, Pageable pageable);
+
+    Page<Message> findByFromUserOrderByCreatedAtDesc(String fromUser, Pageable pageable);
 }

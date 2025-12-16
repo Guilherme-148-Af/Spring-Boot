@@ -1,4 +1,4 @@
-package example.cashcard;
+/* package example.cashcard;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -51,4 +51,6 @@ class SecurityConfig {
                 .build();
         return new InMemoryUserDetailsManager(sarah, hankOwnsNoCards, kumar);
     }
-}
+} */
+
+.requestMatchers("/messages/").authenticated()

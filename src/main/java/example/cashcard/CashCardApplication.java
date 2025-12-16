@@ -11,3 +11,18 @@ public class CashCardApplication {
 	}
 
 }
+
+
+/* package example.cashcard;
+
+import org.springframework.data.annotation.Id;
+import java.time.Instant;
+
+record Message(
+    @Id Long id,
+    String fromUser,
+    String toUser,
+    String content,
+    Instant createdAt,
+    boolean read
+) {} */
